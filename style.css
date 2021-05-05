@@ -1,0 +1,239 @@
+@import url("https://fonts.googleapis.com/css2?family=Rajdhani&display=swap");
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --light-color: #ffffce;
+  --extra-light-grey-color: #a5a4a4;
+  --light-grey-color: #3f3a3c;
+  --grey-color: #171013;
+  --red-color: #f73152;
+}
+
+button {
+  color: var(--light-color);
+  border: 1px solid var(--extra-light-grey-color);
+  background-color: transparent;
+  border-radius: 5px;
+  font-family: inherit;
+  outline: none;
+  font-size: 1rem;
+}
+
+button:hover {
+  border: 1px solid var(--light-color);
+  box-shadow: 0 0 3px 1px var(--light-color);
+  color: var(--light-color);
+}
+
+button:active {
+  transform: scale(0.96);
+}
+
+body {
+  font-family: "Rajdhani", sans-serif;
+  background-color: black;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
+
+.game {
+  width: 600px;
+  height: 800px;
+  background: url("./background-02.png") no-repeat center center/cover;
+  position: relative;
+}
+
+/* game_start */
+.start_screen {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.start_screen.hide {
+  display: none;
+}
+
+.start_screen span {
+  color: var(--light-color);
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.gamestartbtn {
+  padding: 5px 20px;
+}
+
+/* Game header */
+
+.game_screen {
+  width: 600px;
+  height: 800px;
+  visibility: hidden;
+}
+
+.game_screen.show {
+  visibility: visible;
+}
+
+.game_header {
+  width: 100%;
+  height: 70px;
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), transparent);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+.game_header .game_timer {
+  width: 200px;
+  text-align: center;
+}
+
+.game_header button {
+  width: 70px;
+  height: 30px;
+}
+
+.game_timer {
+  color: var(--light-color);
+  font-size: 1.5rem;
+}
+
+/* gamefield */
+.game_field {
+  position: relative;
+  width: 600px;
+  height: 80%;
+  display: inline-block;
+}
+
+.circle {
+  position: absolute;
+  width: 85px;
+  height: 85px;
+  border-radius: 50%;
+  border: 2px solid var(--grey-color);
+  cursor: pointer;
+  transition: all 1s ease-in-out;
+  animation: circlemove 3s infinite linear, fadein 2s linear;
+  transform-origin: 40px 40px;
+}
+
+.circle:hover,
+.circle.red:hover {
+  border: 2px solid var(--extra-light-grey-color);
+}
+
+.circle.active {
+  background-color: rgba(255, 255, 206, 0.1);
+  position: absolute;
+  width: 85px;
+  height: 85px;
+  border-radius: 50%;
+  border: 1px solid var(--light-color);
+  animation: circlemove 3s infinite linear;
+  box-shadow: 0 0 5px 2px var(--light-color);
+}
+
+.circle.red {
+  border: 2px solid var(--grey-color);
+  cursor: pointer;
+  animation: circlemove 3s infinite linear, fadein 2s linear;
+}
+.circle.red.active {
+  background-color: rgba(255, 69, 69, 0.16);
+  border: 1px solid var(--red-color);
+  box-shadow: 0 0 5px 1px var(--red-color);
+}
+
+/* finish */
+.game_field_finish {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 80%;
+  transform: translateY(-100%);
+  visibility: hidden;
+}
+
+.game_field_finish.show {
+  visibility: visible;
+}
+.game_field_finish span {
+  text-align: center;
+  color: var(--light-color);
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.game_field_finish .restartbtn {
+  padding: 5px 20px;
+}
+
+/* game_bottom */
+.game_bottom {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--light-color);
+}
+
+.hint {
+  width: 140px;
+  height: 30px;
+  outline: none;
+  font-size: 1rem;
+}
+
+.hint_text {
+  opacity: 0;
+  margin-left: 10px;
+  transition: opacity 2s linear;
+}
+
+.hint_text.show {
+  opacity: 1;
+}
+
+.red_score {
+  color: var(--red-color);
+}
+
+@keyframes circlemove {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
